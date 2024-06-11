@@ -37,3 +37,6 @@ class TestLogOut:
                 locators.ENTER_BUTTON
             )
         )
+
+        enter_title = driver.find_element(*locators.ENTER_BUTTON).text
+        assert enter_title == "Войти"

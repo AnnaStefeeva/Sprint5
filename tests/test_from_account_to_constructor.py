@@ -20,6 +20,8 @@ class TestFromAccountToConstructor:
                 locators.MAKE_BURGER_TITLE
             )
         )
+        burger_title = driver.find_element(*locators.MAKE_BURGER_TITLE).text
+        assert burger_title == "Соберите бургер"
 
     def test_account_to_logo(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
@@ -37,3 +39,5 @@ class TestFromAccountToConstructor:
                 locators.MAIN_LOGO
             )
         )
+        burger_title = driver.find_element(*locators.MAKE_BURGER_TITLE).text
+        assert burger_title == "Соберите бургер"

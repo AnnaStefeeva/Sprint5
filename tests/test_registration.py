@@ -28,6 +28,9 @@ class TestRegistration:
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located(locators.ENTER_BUTTON))
 
+        enter_button_title = driver.find_element(*locators.ENTER_BUTTON).text
+        assert enter_button_title == "Войти"
+
     def test_registration_with_incorrect_password(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 

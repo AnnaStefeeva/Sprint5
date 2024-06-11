@@ -11,6 +11,9 @@ class TestLogin:
 
         self._login(driver, credentials['email'], credentials['password'])
 
+        order_button_title = driver.find_element(*locators.MAKE_ORDER_BUTTON).text
+        assert order_button_title == "Оформить заказ"
+
     def test_login_from_registration(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
@@ -36,10 +39,16 @@ class TestLogin:
 
         self._login(driver, email, password)
 
+        order_button_title = driver.find_element(*locators.MAKE_ORDER_BUTTON).text
+        assert order_button_title == "Оформить заказ"
+
     def test_login_by_account(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         self._login(driver, credentials['email'], credentials['password'])
+
+        order_button_title = driver.find_element(*locators.MAKE_ORDER_BUTTON).text
+        assert order_button_title == "Оформить заказ"
 
     def test_login_from_password_restore(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_BUTTON).click()
@@ -56,6 +65,9 @@ class TestLogin:
         )
         driver.find_element(*locators.LOGIN_LINK).click()
         self._login(driver, credentials['email'], credentials['password'])
+
+        order_button_title = driver.find_element(*locators.MAKE_ORDER_BUTTON).text
+        assert order_button_title == "Оформить заказ"
 
     @staticmethod
     def _login(driver, email, password):

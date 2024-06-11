@@ -12,3 +12,6 @@ class TestTransitionToAccount:
                 locators.ENTER_BUTTON
             )
         )
+
+        enter_button_title = driver.find_element(*locators.ENTER_BUTTON).text
+        assert enter_button_title == "Войти"
