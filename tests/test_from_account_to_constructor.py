@@ -1,15 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import URL
 import locators
 
 
 class TestFromAccountToConstructor:
-    def test_account_to_constructor(self):
-        driver = webdriver.Chrome()
-        driver.get(URL)
-
+    def test_account_to_constructor(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -26,12 +21,7 @@ class TestFromAccountToConstructor:
             )
         )
 
-        driver.quit()
-
-    def test_account_to_logo(self):
-        driver = webdriver.Chrome()
-        driver.get(URL)
-
+    def test_account_to_logo(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -47,5 +37,3 @@ class TestFromAccountToConstructor:
                 locators.MAIN_LOGO
             )
         )
-
-        driver.quit()

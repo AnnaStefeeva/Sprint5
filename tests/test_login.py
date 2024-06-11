@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 import data
@@ -7,18 +6,12 @@ import locators
 
 
 class TestLogin:
-    def test_login_by_enter(self, credentials):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_login_by_enter(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_BUTTON).click()
 
         self._login(driver, credentials['email'], credentials['password'])
 
-    def test_login_from_registration(self):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_login_from_registration(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -43,18 +36,12 @@ class TestLogin:
 
         self._login(driver, email, password)
 
-    def test_login_by_account(self, credentials):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_login_by_account(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         self._login(driver, credentials['email'], credentials['password'])
 
-    def test_login_from_password_restore(self, credentials):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_login_from_password_restore(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located(
@@ -87,5 +74,3 @@ class TestLogin:
                 locators.MAKE_ORDER_BUTTON
             )
         )
-
-        driver.quit()

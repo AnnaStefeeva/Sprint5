@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 import data
@@ -7,10 +6,7 @@ import locators
 
 
 class TestRegistration:
-    def test_successful_registration(self):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_successful_registration(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -32,12 +28,7 @@ class TestRegistration:
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located(locators.ENTER_BUTTON))
 
-        driver.quit()
-
-    def test_registration_with_incorrect_password(self):
-        driver = webdriver.Chrome()
-        driver.get(data.URL)
-
+    def test_registration_with_incorrect_password(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -64,5 +55,3 @@ class TestRegistration:
         )
         error_text = driver.find_element(*locators.INPUT_ERROR_TEXT).text
         assert error_text == data.INCORRECT_PASSWORD_ERROR_TEXT
-
-        driver.quit()

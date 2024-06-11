@@ -1,15 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data import URL
 import locators
 
 
 class TestTransitionToAccount:
-    def test_account_button(self):
-        driver = webdriver.Chrome()
-        driver.get(URL)
-
+    def test_account_button(self, driver):
         driver.find_element(*locators.ACCOUNT_LINK).click()
 
         WebDriverWait(driver, 3).until(
@@ -17,5 +12,3 @@ class TestTransitionToAccount:
                 locators.ENTER_BUTTON
             )
         )
-
-        driver.quit()

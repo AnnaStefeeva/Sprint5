@@ -7,6 +7,14 @@ import data
 import locators
 
 
+@pytest.fixture
+def driver():
+    driver = webdriver.Chrome()
+    driver.get(data.URL)
+    yield driver
+    driver.quit()
+
+
 @pytest.fixture(scope='session')
 def credentials():
     driver = webdriver.Chrome()

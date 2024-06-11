@@ -1,15 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 import locators
-from data import URL
 
 
 class TestLogOut:
-    def test_log_out(self, credentials):
-        driver = webdriver.Chrome()
-        driver.get(URL)
-
+    def test_log_out(self, credentials, driver):
         driver.find_element(*locators.ACCOUNT_BUTTON).click()
 
         WebDriverWait(driver, 3).until(
@@ -42,5 +37,3 @@ class TestLogOut:
                 locators.ENTER_BUTTON
             )
         )
-
-        driver.quit()
