@@ -15,11 +15,8 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope='session')
-def credentials():
-    driver = webdriver.Chrome()
-    driver.get(data.URL)
-
+@pytest.fixture
+def credentials(driver):
     driver.find_element(*locators.ACCOUNT_LINK).click()
 
     WebDriverWait(driver, 3).until(
@@ -42,7 +39,13 @@ def credentials():
     WebDriverWait(driver, 3).until(
         expected_conditions.visibility_of_element_located(locators.ENTER_BUTTON))
 
-    driver.quit()
+    driver.find_element(*locators.MAIN_LOGO).click()
+
+    WebDriverWait(driver, 3).until(
+        expected_conditions.visibility_of_element_located(
+            locators.MAKE_BURGER_TITLE
+        )
+    )
 
     return {
         'name': name,
